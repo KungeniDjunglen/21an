@@ -2,6 +2,9 @@ namespace _21an
 {
     public partial class Form1 : Form
     {
+        public bool TaEttKort = false;
+        public bool AvslutaRundan = false;
+
         static int DraKort()
         {
             Random rng = new Random();
@@ -28,13 +31,22 @@ namespace _21an
             }
             return points;
         }
-        public bool Checker(int UserPoints, int ComputerPoints)
+        public int Checker(int UserPoints, int ComputerPoints) // 0 = ingen vann. 1 = spelaren vann. 2 = datorn vann.
         {
             if (UserPoints > 21)
             {
-
+                return 2;
             }
-            return false;
+            if (ComputerPoints > 21)
+            {
+                return 1;
+            }
+            return 0;
+        }
+        public void WriteTotalPoints(int UserPoints, int ComputerPoints)
+        {
+            ComputerTotalPoints.Text = ComputerPoints.ToString();
+            UserTotalPoints.Text = UserPoints.ToString();
         }
 
 
@@ -42,21 +54,69 @@ namespace _21an
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        public async Task Wait()
         {
-            bool k�r = true;
+            while(!TaEttKort | !AvslutaRundan)
+            {
+                await Task.Delay(100).ConfigureAwait(false);
+            }
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            bool kör = true;
             button2.BackColor = Color.White;
+            button3.BackColor = Color.White;
 
             int UserPoints = GivePoints(true, 2);
             int ComputerPoints = GivePoints(false, 2);
+            WriteTotalPoints(UserPoints, ComputerPoints);
 
-            while (k�r)
+            while (kör)
             {
-                k�r = false;
+
+                await Wait();
+
+                //Fråga användaren om han vill ta mer kort.
+                if (TaEttKort) //inte så noga
+                {
+                    UserPoints += GivePoints(true);
+                    ComputerPoints += GivePoints(false);
+                    WriteTotalPoints(UserPoints, ComputerPoints);
+                    TaEttKort = false;
+                }
+                if (AvslutaRundan)
+                {
+                    while(ComputerPoints < UserPoints)
+                    {
+                        ComputerPoints += GivePoints(false);
+                    }
+                    kör = false;
+                }
+                int vinst = Checker(UserPoints, ComputerPoints);
+                if (vinst != 0)
+                {
+                    if(vinst == 1)
+                    {
+                        MessageBox.Show("Du vann grattis");
+                    }
+                    if(vinst == 2)
+                    {
+                        MessageBox.Show("Du förlorade");
+                    }
+                    kör = false;
+                }
             }
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TaEttKort = true;
+        }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            AvslutaRundan = true;
         }
     }
 }
