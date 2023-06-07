@@ -1,4 +1,4 @@
-﻿namespace _21an
+namespace _21an
 {
     partial class Form1
     {
@@ -29,19 +29,22 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.UserTotalPoints = new System.Windows.Forms.Label();
+            this.UserLastPoints = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.ComputerTotalPoints = new System.Windows.Forms.Label();
+            this.ComputerLastPoints = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.UserLastPoints = new System.Windows.Forms.Label();
-            this.ComputerLastPoints = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +52,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Controls.Add(this.UserTotalPoints);
             this.panel1.Controls.Add(this.UserLastPoints);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label5);
@@ -58,6 +62,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(289, 144);
             this.panel1.TabIndex = 0;
+            // 
+            // UserTotalPoints
+            // 
+            this.UserTotalPoints.AutoSize = true;
+            this.UserTotalPoints.Location = new System.Drawing.Point(121, 80);
+            this.UserTotalPoints.Name = "UserTotalPoints";
+            this.UserTotalPoints.Size = new System.Drawing.Size(0, 15);
+            this.UserTotalPoints.TabIndex = 6;
+            // 
+            // UserLastPoints
+            // 
+            this.UserLastPoints.AutoSize = true;
+            this.UserLastPoints.Location = new System.Drawing.Point(135, 47);
+            this.UserLastPoints.Name = "UserLastPoints";
+            this.UserLastPoints.Size = new System.Drawing.Size(0, 15);
+            this.UserLastPoints.TabIndex = 5;
             // 
             // label7
             // 
@@ -98,6 +118,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel2.Controls.Add(this.ComputerTotalPoints);
             this.panel2.Controls.Add(this.ComputerLastPoints);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label6);
@@ -107,6 +128,22 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(289, 144);
             this.panel2.TabIndex = 1;
+            // 
+            // ComputerTotalPoints
+            // 
+            this.ComputerTotalPoints.AutoSize = true;
+            this.ComputerTotalPoints.Location = new System.Drawing.Point(138, 80);
+            this.ComputerTotalPoints.Name = "ComputerTotalPoints";
+            this.ComputerTotalPoints.Size = new System.Drawing.Size(0, 15);
+            this.ComputerTotalPoints.TabIndex = 7;
+            // 
+            // ComputerLastPoints
+            // 
+            this.ComputerLastPoints.AutoSize = true;
+            this.ComputerLastPoints.Location = new System.Drawing.Point(150, 47);
+            this.ComputerLastPoints.Name = "ComputerLastPoints";
+            this.ComputerLastPoints.Size = new System.Drawing.Size(0, 15);
+            this.ComputerLastPoints.TabIndex = 6;
             // 
             // label8
             // 
@@ -163,28 +200,25 @@
             this.button2.TabIndex = 3;
             this.button2.Text = "Ta ett kort";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // UserLastPoints
+            // button3
             // 
-            this.UserLastPoints.AutoSize = true;
-            this.UserLastPoints.Location = new System.Drawing.Point(135, 47);
-            this.UserLastPoints.Name = "UserLastPoints";
-            this.UserLastPoints.Size = new System.Drawing.Size(0, 15);
-            this.UserLastPoints.TabIndex = 5;
-            // 
-            // ComputerLastPoints
-            // 
-            this.ComputerLastPoints.AutoSize = true;
-            this.ComputerLastPoints.Location = new System.Drawing.Point(150, 47);
-            this.ComputerLastPoints.Name = "ComputerLastPoints";
-            this.ComputerLastPoints.Size = new System.Drawing.Size(0, 15);
-            this.ComputerLastPoints.TabIndex = 6;
+            this.button3.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.button3.Location = new System.Drawing.Point(307, 210);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(143, 47);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Avsluta rundan";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 293);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel2);
@@ -215,5 +249,8 @@
         private Label label8;
         private Label UserLastPoints;
         private Label ComputerLastPoints;
+        private Label UserTotalPoints;
+        private Label ComputerTotalPoints;
+        private Button button3;
     }
 }
