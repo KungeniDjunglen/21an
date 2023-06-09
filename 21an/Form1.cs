@@ -124,7 +124,7 @@ namespace _21an
                         WriteTotalPoints(UserPoints, ComputerPoints);
                     }
                     TaEttKort = false; 
-                    if (FinalChecker(UserPoints,ComputerPoints) != 0) { kör = false; }
+                    if (FinalChecker(UserPoints,ComputerPoints) != 0) { kör = false; break; }
                 }
                 int vinst = Checker(UserPoints, ComputerPoints);
                 if (vinst != 0)
