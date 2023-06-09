@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace _21an
 {
     public partial class Form1 : Form
@@ -43,6 +45,35 @@ namespace _21an
             }
             return 0;
         }
+        public int FinalChecker(int UserPoints, int ComputerPoints)
+        {
+            int OldChecker = Checker(UserPoints, ComputerPoints);
+            if (OldChecker != 0)
+            {
+                if (OldChecker == 1)
+                {
+                    MessageBox.Show("Du vann grattis");
+                    return 1;
+                }
+                if (OldChecker == 2)
+                {
+                    MessageBox.Show("Du förlorade");
+                    return 2;
+                }
+            }
+            else if (UserPoints > ComputerPoints)
+            {
+                MessageBox.Show("Du vann grattis");
+                return 1;
+            }
+            else if (ComputerPoints > UserPoints)
+            {
+                MessageBox.Show("Du förlorade");
+                return 2;
+            }
+            return 0;
+
+        }
         public void WriteTotalPoints(int UserPoints, int ComputerPoints)
         {
             ComputerTotalPoints.Text = ComputerPoints.ToString();
@@ -78,7 +109,7 @@ namespace _21an
                 await Wait();
 
                 //Fråga användaren om han vill ta mer kort.
-                if (TaEttKort) //inte så noga
+                if (TaEttKort)
                 {
                     UserPoints += GivePoints(true);
                     ComputerPoints += GivePoints(false);
@@ -90,8 +121,10 @@ namespace _21an
                     while(ComputerPoints < UserPoints)
                     {
                         ComputerPoints += GivePoints(false);
+                        WriteTotalPoints(UserPoints, ComputerPoints);
                     }
-                    kör = false;
+                    TaEttKort = false; 
+                    if (FinalChecker(UserPoints,ComputerPoints) != 0) { kör = false; }
                 }
                 int vinst = Checker(UserPoints, ComputerPoints);
                 if (vinst != 0)
